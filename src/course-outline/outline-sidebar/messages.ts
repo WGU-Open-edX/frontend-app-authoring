@@ -7,7 +7,7 @@ const messages = defineMessages({
   },
   section_1_descriptions_1: {
     id: 'course-authoring.course-outline.sidebar.section-1.descriptions-1',
-    defaultMessage: 'You add sections, subsections, and units directly in the outline.',
+    defaultMessage: 'You add sections, subsections, and units directly in the outline (if you have the permissions to do so).',
   },
   section_1_descriptions_2: {
     id: 'course-authoring.course-outline.sidebar.section-1.descriptions-2',
