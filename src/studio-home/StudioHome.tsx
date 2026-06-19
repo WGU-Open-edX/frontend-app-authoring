@@ -169,7 +169,7 @@ const StudioHome = () => {
           <article className="studio-home-sub-header">
             <section>
               <SubHeader
-                title={intl.formatMessage(messages.headingTitle, { studioShortName: studioShortName || 'Studio' })}
+                 title={intl.formatMessage(messages.headingTitle, { studioShortName: studioShortName || 'Studio' }) + ' testing forks'}
                 headerActions={headerButtons}
               />
             </section>
