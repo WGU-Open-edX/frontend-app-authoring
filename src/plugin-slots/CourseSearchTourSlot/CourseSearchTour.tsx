@@ -93,27 +93,27 @@ const CourseSearchTour: React.FC<CourseSearchTourProps> = ({
 
   // Paragon renders two independent ProductTours so each thinks total=1; rewrite the counter
   // text to reflect the real "step X of 2".
-  React.useEffect(() => {
-    if (step !== 'button' && step !== 'scope') { return undefined; }
-    const currentStep = step === 'button' ? 1 : 2;
-    const totalSteps = 2;
-    const expectedText = intl.formatMessage(
-      { id: 'pgn.ProductTour.Checkpoint.page-index-text', defaultMessage: '{step} of {totalSteps}' },
-      { step: currentStep, totalSteps },
-    );
-    const updateCounter = () => {
-      const el = document.querySelector<HTMLElement>('#pgn__checkpoint .pgn__checkpoint-page-index');
-      if (el && el.textContent !== expectedText) {
-        el.textContent = expectedText;
-        return true;
-      }
-      return !!el;
-    };
-    if (updateCounter()) { return undefined; }
-    const observer = new MutationObserver(() => { updateCounter(); });
-    observer.observe(document.body, { childList: true, subtree: true });
-    return () => observer.disconnect();
-  }, [step, intl]);
+  // React.useEffect(() => {
+  //   if (step !== 'button' && step !== 'scope') { return undefined; }
+  //   const currentStep = step === 'button' ? 1 : 2;
+  //   const totalSteps = 2;
+  //   const expectedText = intl.formatMessage(
+  //     { id: 'pgn.ProductTour.Checkpoint.page-index-text', defaultMessage: '{step} of {totalSteps}' },
+  //     { step: currentStep, totalSteps },
+  //   );
+  //   const updateCounter = () => {
+  //     const el = document.querySelector<HTMLElement>('#pgn__checkpoint .pgn__checkpoint-page-index');
+  //     if (el && el.textContent !== expectedText) {
+  //       el.textContent = expectedText;
+  //       return true;
+  //     }
+  //     return !!el;
+  //   };
+  //   if (updateCounter()) { return undefined; }
+  //   const observer = new MutationObserver(() => { updateCounter(); });
+  //   observer.observe(document.body, { childList: true, subtree: true });
+  //   return () => observer.disconnect();
+  // }, [step, intl]);
 
   // While the scope checkpoint is open, the Paragon Checkpoint is rendered outside the
   // ModalDialog subtree, so react-focus-on treats clicks on it as outside-clicks and closes
@@ -171,26 +171,26 @@ const CourseSearchTour: React.FC<CourseSearchTourProps> = ({
     }],
   };
 
-  const scopeTour = {
-    enabled: step === 'scope',
-    onDismiss: () => finish('dismissed'),
-    onEscape: () => finish('dismissed'),
-    onEnd: () => finish('completed'),
-    dismissAltText: intl.formatMessage(messages.dismissAltText),
-    checkpoints: [{
-      target: `#${SEARCH_SCOPE_TARGET_ID}`,
-      placement: 'bottom' as const,
-      title: intl.formatMessage(messages.searchScopeStepTitle),
-      body: intl.formatMessage(messages.searchScopeStepBody),
-      endButtonText: intl.formatMessage(messages.searchScopeStepEnd),
-      onEnd: () => finish('completed'),
-    }],
-  };
+  // const scopeTour = {
+  //   enabled: step === 'scope',
+  //   onDismiss: () => finish('dismissed'),
+  //   onEscape: () => finish('dismissed'),
+  //   onEnd: () => finish('completed'),
+  //   dismissAltText: intl.formatMessage(messages.dismissAltText),
+  //   checkpoints: [{
+  //     target: `#${SEARCH_SCOPE_TARGET_ID}`,
+  //     placement: 'bottom' as const,
+  //     title: intl.formatMessage(messages.searchScopeStepTitle),
+  //     body: intl.formatMessage(messages.searchScopeStepBody),
+  //     endButtonText: intl.formatMessage(messages.searchScopeStepEnd),
+  //     onEnd: () => finish('completed'),
+  //   }],
+  // };
 
   return (
     <>
       <ProductTour tours={[buttonTour]} />
-      <ProductTour tours={[scopeTour]} />
+      {/* <ProductTour tours={[scopeTour]} /> */}
     </>
   );
 };
