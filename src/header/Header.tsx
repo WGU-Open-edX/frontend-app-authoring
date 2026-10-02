@@ -5,6 +5,7 @@ import { type Container, useToggle } from '@openedx/paragon';
 
 import { useWaffleFlags } from '../data/apiHooks';
 import { SearchModal } from '../search-modal';
+import { CourseSearchTourSlot } from '../plugin-slots/CourseSearchTourSlot';
 import {
   useContentMenuItems, useLibraryToolsMenuItems, useSettingMenuItems, useToolsMenuItems,
 } from './hooks';
@@ -86,11 +87,17 @@ const Header = ({
         isNewHomePage={waffleFlags.useNewHomePage}
       />
       {meiliSearchEnabled && (
-        <SearchModal
-          isOpen={isShowSearchModalOpen}
-          courseId={isLibrary ? undefined : contextId}
-          onClose={closeSearchModal}
-        />
+        <>
+          <SearchModal
+            isOpen={isShowSearchModalOpen}
+            courseId={isLibrary ? undefined : contextId}
+            onClose={closeSearchModal}
+          />
+          <CourseSearchTourSlot
+            isSearchModalOpen={isShowSearchModalOpen}
+            openSearchModal={openSearchModal}
+          />
+        </>
       )}
     </>
   );

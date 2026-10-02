@@ -47,23 +47,26 @@ const SearchUI: React.FC<{
             className="flex-grow-1 mr-2"
             autoFocus={props.autoFocus}
           />
-          <SelectMenu variant="primary">
-            <MenuItem
-              onClick={switchToThisCourse}
-              defaultSelected={searchThisCourse}
-              iconAfter={searchThisCourse ? Check : undefined}
-              disabled={!props.courseId}
-            >
-              <FormattedMessage {...messages.searchThisCourse} />
-            </MenuItem>
-            <MenuItem
-              onClick={switchToAllCourses}
-              defaultSelected={!searchThisCourse}
-              iconAfter={searchThisCourse ? undefined : Check}
-            >
-              <FormattedMessage {...messages.searchAllCourses} />
-            </MenuItem>
-          </SelectMenu>
+          {/* id used as a target by the course search product tour */}
+          <div id="course-search-tour-scope-target">
+            <SelectMenu variant="primary">
+              <MenuItem
+                onClick={switchToThisCourse}
+                defaultSelected={searchThisCourse}
+                iconAfter={searchThisCourse ? Check : undefined}
+                disabled={!props.courseId}
+              >
+                <FormattedMessage {...messages.searchThisCourse} />
+              </MenuItem>
+              <MenuItem
+                onClick={switchToAllCourses}
+                defaultSelected={!searchThisCourse}
+                iconAfter={searchThisCourse ? undefined : Check}
+              >
+                <FormattedMessage {...messages.searchAllCourses} />
+              </MenuItem>
+            </SelectMenu>
+          </div>
         </div>
         <div className="d-flex mt-3 align-items-center">
           <FilterByBlockType />
